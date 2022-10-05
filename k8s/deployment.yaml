@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-demos-roadtok8s-com-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-demos-roadtok8s-com-deployment
+  template:
+    metadata:
+      labels:
+        app: go-demos-roadtok8s-com-deployment
+    spec:
+      containers:
+        - name: go-demos-roadtok8s-com-container
+          image: roadtokubernetes/go.demo.roadtok8s.com:latest
+          imagePullPolicy: Always
+          env:
+            - name: PORT
+              value: "3001"
+          ports:
+            - name: go-demo-port
+              containerPort: 3001
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: go-demo-port
+            failureThreshold: 1
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /healthz
+              port: go-demo-port
+            failureThreshold: 30
+            periodSeconds: 10
+
