@@ -11,8 +11,7 @@ This is a demo Go application for the Road to Kubernetes series. This repo is pr
 Create a `deployment`:
 ```
 kubectl apply -f https://raw.githubusercontent.com/roadtokubernetes/go.demo.roadtok8s.com/main/k8s/deployment.yaml --namespace=apps
-```
-If you're using [keel.sh](https://keel.sh), this deployment will automatically update based on the [deployment annotations](https://github.com/roadtokubernetes/go.demo.roadtok8s.com/blob/main/k8s/deployment.yaml). 
+``` 
 
 Create a `service`:
 ```
